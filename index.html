@@ -1,62 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenTMP LLM Framework</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OpenTMP LLM - Secure and Efficient Distributed LLM Training</title>
+  <meta name="description" content="OpenTMP LLM framework provides a secure, efficient, and governable framework for distributed large language model (LLM) training with robust privacy and compliance controls.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+    .card { transition: transform .25s ease, box-shadow .25s ease; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+  </style>
 </head>
-<body>
-    <header>
-        <h1>OpenTMP LLM Framework</h1>
-        <p><strong>Secure, Efficient, and Governable Distributed Training for Large Language Models</strong></p>
-    </header>
+<body class="bg-slate-50 text-slate-900">
+  <!-- Nav -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-white/70 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <a href="#" class="flex items-center gap-2">
+          <div class="h-8 w-8 rounded-xl bg-gradient-to-br from-indigo-500 via-sky-500 to-cyan-400"></div>
+          <span class="font-extrabold tracking-tight">OpenTMP LLM</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a href="#features" class="hover:text-slate-700">Features</a>
+          <a href="#architecture" class="hover:text-slate-700">Architecture</a>
+          <a href="#usecases" class="hover:text-slate-700">Use Cases</a>
+          <a href="#contact" class="hover:text-slate-700">Contact</a>
+        </nav>
+        <a href="#contact" class="hidden sm:inline-flex items-center rounded-xl bg-slate-900 text-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-slate-800">Get in touch</a>
+      </div>
+    </div>
+  </header>
 
-    <section class="intro">
-        <h2>Introduction</h2>
-        <p>The rapid evolution of Large Language Models (LLMs) has revolutionized the AI landscape, but the challenge of data privacy persists. Training LLMs demands vast amounts of data, often distributed across different entities and containing sensitive information. Centralizing this data poses security risks and is not always feasible. The <strong>OpenTMP LLM framework</strong> offers a secure, efficient, and governable solution for distributed LLM training, blending federated learning with advanced Multi-Party Computation (MPC) techniques to ensure data privacy and confidentiality.</p>
-    </section>
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-slate-100 via-white to-slate-50"></div>
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-20">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ring-1 ring-inset ring-slate-200 bg-white text-slate-600">Distributed LLM Training</span>
+          <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight">Secure, Efficient, and Governable Framework for LLMs</h1>
+          <p class="mt-5 text-lg text-slate-600 leading-7">OpenTMP LLM empowers distributed large language model training with cutting-edge security and compliance controls, ensuring privacy and scalability.</p>
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <a href="#features" class="inline-flex items-center rounded-xl bg-slate-900 text-white px-5 py-3 font-semibold shadow hover:bg-slate-800">Explore the solution</a>
+            <span class="text-sm text-slate-500">Up to <strong>10,000 TPS</strong> • NxN parties • L1/L2 ready</span>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="mx-auto max-w-md">
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <div class="text-sm text-slate-500">Framework overview</div>
+              <div class="mt-4 space-y-3">
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                  <div>
+                    <div class="text-xs text-slate-500">Input A (private)</div>
+                    <div class="font-semibold">Distributed Nodes</div>
+                  </div>
+                  <div class="text-xs text-slate-500">encrypted</div>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                  <div>
+                    <div class="text-xs text-slate-500">Input B (private)</div>
+                    <div class="font-semibold">Client Nodes</div>
+                  </div>
+                  <div class="text-xs text-slate-500">encrypted</div>
+                </div>
+                <div class="p-4 rounded-xl bg-indigo-600 text-white font-semibold text-center">MPC Engine</div>
+                <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 flex items-center justify-between">
+                  <div>
+                    <div class="text-xs">Output (public)</div>
+                    <div class="font-semibold">Finalized Model Output</div>
+                  </div>
+                  <div class="text-xs">auditable if granted</div>
+                </div>
+              </div>
+            </div>
+            <p class="mt-3 text-center text-xs text-slate-500">Privacy by default • Audit by permission</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section class="features">
-        <h2>Key Features</h2>
-        <ul>
-            <li><strong>Private LLM:</strong> Ensures secure local training and confidential inference without compromising user privacy.</li>
-            <li><strong>Efficient LLM:</strong> Boosts performance with edge AI acceleration, model distillation, and quantization techniques.</li>
-            <li><strong>Governable LLM:</strong> Supports multi-party collaborative training and governance through MPC-based joint training and shared model ownership.</li>
-        </ul>
-    </section>
-
-    <section class="core-design">
-        <h2>Core Design Principles</h2>
-        <p>The OpenTMP LLM framework is built to address the core challenges of LLM training—efficiency, flexibility, and scalability—while ensuring robust data privacy and security. At its core, the framework utilizes a hybrid MPC Distributed Learning (HMDL) protocol, combining the decentralized power of distributed learning with the strong cryptographic capabilities of MPC. This ensures that even in multi-party collaborations, no participant can access others' raw data or model updates, completely eliminating the risk of data leakage.</p>
-
-        <p>Additionally, a high-speed MPC engine optimizes cryptographic computations to reduce both computation and communication overhead, enabling training speeds comparable to non-privacy-preserving methods without compromising security.</p>
-    </section>
-
-    <section class="advanced-tech">
-        <h2>Advanced Technology Integration</h2>
-        <p>The framework integrates advanced techniques like Parameter-Efficient Fine-Tuning (PEFT), knowledge distillation, and model quantization, significantly improving both computational efficiency and model performance. These optimizations allow LLMs to be trained even in resource-constrained environments, making the framework an ideal solution for large-scale distributed training.</p>
-    </section>
-
-    <section class="applications">
-        <h2>Applications</h2>
-        <h3>Financial Technology (FinTech)</h3>
-        <p>OpenTMP enables secure, multi-party collaborative training without compromising sensitive financial data. Multiple institutions can train more accurate models for credit risk assessments or fraud detection while maintaining strict data privacy through MPC technology.</p>
-
-        <h3>Robotics</h3>
-        <p>In smart manufacturing, logistics, and robotics, the framework supports local post-training and inference. This minimizes latency, enhances real-time decision-making, and ensures that critical data stays on the device, boosting security and reliability.</p>
-
-        <h3>AI Agents</h3>
-        <p>The framework safeguards user data and model intellectual property, making it ideal for AI agents, such as smart assistants and personalized recommendation systems, that handle sensitive user information.</p>
-    </section>
-
-    <section class="conclusion">
-        <h2>Conclusion</h2>
-        <p>OpenTMP LLM framework offers a comprehensive, cutting-edge solution for secure, efficient, and scalable distributed LLM training. Its innovative combination of federated learning and MPC enables privacy-preserving AI training, meeting the needs of industries like FinTech, robotics, and AI agents. The flexibility, high efficiency, and strong privacy protections make OpenTMP the ideal choice for advanced AI model development.</p>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 OpenTMP Framework. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+  <!-- Features -->
+  <section id="features" class="py-16">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl font-extrabold tracking-tight">Key Highlights</h2>
+        <p class="mt-3 text-slate-600">OpenTMP LLM offers a secure, scalable, and privacy-preserving framework for distributed large language model (LLM) training.</p>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <div class="h-10 w-10 rounded-xl bg-slate-900/90 mb-4"></div>
+          <h3 class="font-semibold text-lg">Private Training</h3>
+          <p class="mt-2 text-sm text-slate-600">Ensures data privacy during training with encrypted communication and minimal metadata.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <div class="h-10 w-10 rounded-xl bg-indigo-600/90 mb-4"></div>
+          <h3 class="font-semibold text-lg">Regulatory Compliance</h3>
+          <p class="mt-2 text-sm text-slate-600">Built-in support for regulatory auditability with selective data disclosure for compliance checks.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <div class="h-10 w-10 rounded-xl bg-cyan-500/90 mb-4"></div>
+          <h3 class="font-semibold text-lg">High Performance</h3>
+          <p class="mt-2 text-sm text-slate-600">Optimized for large-scale training with support for parallelized computations and batch aggregation.</p>
+        </div>
+        <!-- Card 4 -->
+        <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <div class="h-10 w-10 rounded-xl bg-emerald-500/90 mb-4"></div>
+          <h3 class="font-semibold text-lg">Scalable Infrastructure</h3>
+          <p class="mt-2 text-sm text-slate-600">Supports distributed, multi-party model training across cloud, on-premise, or hybrid environments.</p>
+        </div>
+        <!-- Card 5 -->
+        <div class="card rounded-2xl border border-slate-200 bg-white p-6">
