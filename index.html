@@ -59,7 +59,7 @@
                   <div>
                     <div class="text-xs text-slate-500">Input (Secured)</div>
                     <div class="font-semibold">Client Data Silo</div>
-                </div>
+                  </div>
                   <div class="text-xs text-slate-500">slicing + TEE</div>
                 </div>
                 <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
@@ -91,7 +91,7 @@
       <div class="max-w-2xl">
         <h2 class="text-3xl font-extrabold tracking-tight">Key Pillars of OpenTMP</h2>
         <p class="mt-3 text-slate-600">OpenTMP balances security, distributed performance, and data governance for enterprise AI training.</p>
-      </div>
+        </div>
       <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="card rounded-2xl border border-slate-200 bg-white p-6">
           <div class="h-10 w-10 rounded-xl bg-slate-900/90 mb-4 flex items-center justify-center text-white font-bold">🛡️</div>
@@ -134,25 +134,38 @@
         <p class="mt-3 text-slate-600">A layered approach integrating cryptographic isolation with large-scale distributed training logic.</p>
       </div>
 
-            <div class="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6">
-        <svg viewBox="0 0 900 470" class="w-full h-auto">
-                    <rect x="30" y="30" width="840" height="80" rx="14" class="fill-white stroke-slate-300" stroke-width="2"></rect>
-          <text x="50" y="75" font-size="18" font-weight="700" fill="#0f172a">LLM Application Layer</text>
-          <text x="50" y="98" font-size="13" fill="#334155">Domain-Specific LLMs • Secure Chatbots • Code Generation • Confidential Inference</text>
+            <div class="mt-10 space-y-4">
+                <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h3 class="font-bold text-lg text-indigo-700">1. LLM Application Layer</h3>
+          <p class="mt-1 text-sm text-slate-600">
+            **Focus:** End-user interaction and high-level tasks.
+            *Example:* Domain-Specific LLMs, Secure Chatbots, Code Generation, Confidential Inference.
+          </p>
+        </div>
 
-                    <rect x="30" y="130" width="840" height="110" rx="14" class="fill-white stroke-slate-300" stroke-width="2"></rect>
-          <text x="50" y="175" font-size="18" font-weight="700" fill="#0f172a">Secure Distributed Core (OpenTMP Engine)</text>
-          <text x="50" y="198" font-size="13" fill="#334155">Model Slicing Logic • Distributed TEE Management • Federated Aggregation • Governance Policy Enforcement</text>
+                <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h3 class="font-bold text-lg text-indigo-700">2. Secure Distributed Core (OpenTMP Engine)</h3>
+          <p class="mt-1 text-sm text-slate-600">
+            **Focus:** Orchestration and security logic.
+            *Includes:* Model Slicing Logic, Distributed TEE Management, Federated Aggregation, Governance Policy Enforcement.
+          </p>
+        </div>
 
-                    <rect x="30" y="260" width="840" height="90" rx="14" class="fill-white stroke-slate-300" stroke-width="2"></rect>
-          <text x="50" y="300" font-size="18" font-weight="700" fill="#0f172a">Efficiency & Security Primitives</text>
-          <text x="50" y="323" font-size="13" fill="#334155">LoRA/P-tuning v2 Integration • SPF (Sparsification) • Lightweight Encryption (OTP) • TEE Attestation</text>
+                <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h3 class="font-bold text-lg text-indigo-700">3. Efficiency & Security Primitives</h3>
+          <p class="mt-1 text-sm text-slate-600">
+            **Focus:** Low-level cryptographic and performance optimizations.
+            *Includes:* LoRA/P-tuning v2 Integration, SPF (Sparsification), Lightweight Encryption (OTP), TEE Attestation.
+          </p>
+        </div>
 
-                    <rect x="30" y="370" width="840" height="70" rx="14" class="fill-white stroke-slate-300" stroke-width="2"></rect>
-          <text x="50" y="410" font-size="18" font-weight="700" fill="#0f172a">Infrastructure & Hardware</text>
-          <text x="50" y="433" font-size="13" fill="#334155">GPU/TPU Clusters • Client/Edge Nodes • Server-Side TEEs (e.g., Intel SGX) • Secure Communication Channels</text>
-        </svg>
-        <p class="mt-3 text-xs text-slate-500">Illustrative only. Supports flexible partitioning strategies and diverse hardware stacks.</p>
+                <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h3 class="font-bold text-lg text-indigo-700">4. Infrastructure & Hardware</h3>
+          <p class="mt-1 text-sm text-slate-600">
+            **Focus:** Physical and virtual compute environment.
+            *Includes:* GPU/TPU Clusters, Client/Edge Nodes, Server-Side TEEs (e.g., Intel SGX), Secure Communication Channels.
+          </p>
+        </div>
       </div>
 
             <div class="mt-10 grid lg:grid-cols-3 gap-6">
@@ -203,7 +216,7 @@
         <p class="mt-4 text-white/80 text-lg">Schedule a technical deep dive with our lead engineers to understand TEE integration and performance benchmarks for your specific hardware.</p>
         <a href="#contact" class="mt-8 inline-flex items-center rounded-xl bg-white text-slate-900 px-6 py-3 font-semibold shadow hover:bg-slate-100">Request Technical Demo →</a>
       </div>
-    </div>
+      </div>
   </section>
 
     <section id="contact" class="py-16 bg-white">
