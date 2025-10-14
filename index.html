@@ -1,710 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenTMP LLM: Secure, Efficient, and Governable Training</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    
-    <style>
-        /* CSS Styles: Based on the new Tx Shield light theme design */
-        :root {
-            --light-bg: #f8f8fa; /* Light background */
-            --white-card: #ffffff; /* Card/Container background */
-            --text-dark: #202040; /* Dark primary text */
-            --text-gray: #6b7280; /* Secondary text */
-            --primary-blue: #3b82f6; /* Button/Main accent */
-            --nav-blue: #111827; /* Navbar text color */
-            --blue-hover: #1d4ed8;
-            --container-width: 1100px;
-            --section-bg: #f5f6f9; /* Subtle section background */
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--light-bg);
-            color: var(--text-dark);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a {
-            color: var(--nav-blue);
-            text-decoration: none;
-            transition: color 0.3s, background-color 0.3s;
-        }
-
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- Components --- */
-
-        .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            border-radius: 8px;
-            font-weight: 500;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .btn-dark {
-            background-color: var(--nav-blue);
-            color: var(--white-card);
-            border: 1px solid var(--nav-blue);
-        }
-
-        .btn-dark:hover {
-            background-color: #374151;
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: var(--nav-blue);
-            border: 1px solid var(--nav-blue);
-        }
-        
-        /* --- Header / Navbar --- */
-        .header {
-            background-color: var(--white-card);
-            padding: 15px 0;
-            box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-        }
-
-        .logo i {
-            color: var(--primary-blue);
-            margin-right: 8px;
-            font-size: 1.8rem;
-        }
-
-        .navbar ul {
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar ul li {
-            margin-left: 30px;
-        }
-
-        .navbar ul li a {
-            font-size: 1rem;
-            font-weight: 500;
-        }
-        
-        .navbar .btn-primary {
-            background-color: var(--primary-blue);
-            color: var(--white-card);
-            margin-left: 30px;
-            padding: 10px 20px;
-            border-radius: 6px;
-        }
-
-        /* --- Hero Section --- */
-        .hero-section {
-            padding: 100px 0;
-            display: flex;
-            gap: 40px;
-        }
-
-        .hero-content {
-            flex: 1.2;
-        }
-
-        .hero-content h2 {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 25px;
-            font-weight: 900;
-        }
-
-        .hero-content p {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            margin-bottom: 30px;
-        }
-
-        .hero-content .label {
-            display: inline-block;
-            color: var(--text-dark);
-            font-weight: 500;
-            margin-bottom: 10px;
-            opacity: 0.7;
-        }
-
-        .hero-actions a {
-            margin-right: 15px;
-            margin-top: 20px;
-        }
-
-        .hero-details {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            color: var(--text-gray);
-        }
-        
-        /* --- Hero Flow Chart (Right Side) --- */
-        .hero-flow {
-            flex: 0.8;
-            padding: 0 40px;
-        }
-
-        .flow-card {
-            background-color: var(--white-card);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e0e0e0;
-        }
-
-        .flow-card.output {
-            background-color: #e6f7e8; /* Light Green */
-            border-color: #ccebc5;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .flow-card.output span {
-            font-weight: 500;
-            color: #38a169;
-            background-color: #c6f6d5;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-        }
-
-        .flow-card.input {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .flow-card.input h4 {
-            font-size: 1rem;
-            font-weight: 500;
-        }
-        .flow-card.input .status {
-            color: var(--text-gray);
-            font-size: 0.85rem;
-        }
-
-        .flow-engine {
-            background-color: #6d28d9; /* Deep Purple */
-            color: var(--white-card);
-            text-align: center;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-        
-        .flow-label {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        /* --- Section Styling --- */
-        .section-padding {
-            padding: 80px 0;
-            background-color: var(--section-bg);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .section-header p {
-            color: var(--text-gray);
-            font-size: 1.1rem;
-        }
-
-        /* --- Feature Grid / Key Highlights --- */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .feature-card {
-            background-color: var(--white-card);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid #ebebeb;
-        }
-
-        .feature-card i {
-            display: block;
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            color: var(--white-card);
-            font-size: 1.2rem;
-            text-align: center;
-            line-height: 48px;
-            margin-bottom: 15px;
-        }
-
-        /* Icon Colors */
-        .icon-color-1 { background-color: #111827; }
-        .icon-color-2 { background-color: #8b5cf6; }
-        .icon-color-3 { background-color: #2dd4bf; }
-        .icon-color-4 { background-color: #10b981; }
-        .icon-color-5 { background-color: #a855f7; }
-        .icon-color-6 { background-color: #f59e0b; }
-
-        .feature-card h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .feature-card p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-        }
-
-        /* --- Architecture Section --- */
-        .architecture-section {
-            padding: 80px 0;
-            background-color: var(--white-card);
-        }
-
-        .architecture-header {
-            margin-bottom: 40px;
-        }
-
-        .architecture-header h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .architecture-header p {
-            color: var(--text-gray);
-            font-size: 1.1rem;
-        }
-
-        .architecture-layer {
-            background-color: var(--white-card);
-            border: 1px solid #e0e0e0;
-            padding: 25px 30px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .architecture-layer h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .architecture-layer p {
-            color: var(--text-gray);
-            font-size: 1rem;
-        }
-
-        /* --- Contact / Footer Section --- */
-        .contact-section {
-            background-color: var(--nav-blue); /* Dark Blue Background */
-            color: var(--white-card);
-            padding: 80px 0;
-        }
-
-        .contact-content {
-            display: flex;
-            gap: 80px;
-            align-items: flex-start;
-        }
-
-        .contact-info {
-            flex: 1;
-        }
-
-        .contact-info h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .contact-info p {
-            color: var(--light-gray-text);
-            margin-bottom: 30px;
-            font-size: 1rem;
-        }
-
-        .contact-info ul {
-            list-style: none;
-        }
-
-        .contact-info ul li {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            color: var(--light-gray-text);
-        }
-
-        .contact-info ul li i {
-            color: var(--primary-blue);
-            margin-right: 10px;
-        }
-
-        .contact-form-card {
-            flex: 1;
-            background-color: var(--white-card);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .contact-form-card label {
-            display: block;
-            font-weight: 500;
-            color: var(--text-dark);
-            margin-bottom: 5px;
-            font-size: 0.95rem;
-        }
-
-        .contact-form-card input[type="email"],
-        .contact-form-card input[type="text"],
-        .contact-form-card textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .contact-form-card textarea {
-            height: 100px;
-            resize: vertical;
-        }
-
-        .contact-form-card .btn-submit {
-            background-color: var(--nav-blue);
-            color: var(--white-card);
-            width: 100%;
-            border: none;
-            padding: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 6px;
-        }
-
-        .contact-form-card .disclaimer {
-            font-size: 0.8rem;
-            color: var(--text-gray);
-            text-align: center;
-            margin-top: 15px;
-        }
-
-
-        /* --- Responsive Design --- */
-        @media (max-width: 1150px) {
-            .feature-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 900px) {
-            .hero-section {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .hero-content h2 {
-                font-size: 3rem;
-            }
-            .hero-flow {
-                padding: 0 20px;
-                margin-top: 40px;
-            }
-
-            .contact-content {
-                flex-direction: column;
-                gap: 40px;
-            }
-            
-            .section-padding {
-                padding: 60px 0;
-            }
-            .section-header {
-                margin-bottom: 40px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .navbar ul {
-                display: none; /* Hide nav links on small screens for simplicity */
-            }
-            .header .container {
-                justify-content: center;
-            }
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero-content h2 {
-                font-size: 2.5rem;
-            }
-            .hero-actions {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .hero-actions a {
-                width: 80%;
-                margin: 5px 0;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OpenTMP LLM – Secure and Efficient Distributed LLM Training</title>
+  <meta name="description" content="OpenTMP LLM: A secure and efficient framework for distributed large language model training with privacy, governance, and performance." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+    .card { transition: transform .25s ease, box-shadow .25s ease; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+  </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-900">
 
-    <header class="header">
-        <div class="container">
-            <a href="#" class="logo">
-                <i class="fas fa-shield-alt"></i> OpenTMP LLM
-            </a>
-            <nav class="navbar">
-                <ul>
-                    <li><a href="#">Features</a></li>
-                    <li><a href="#">Architecture</a></li>
-                    <li><a href="#">Usecases</a></li>
-                    <li><a href="#">Docs</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#" class="btn btn-primary">Get in touch</a></li>
-                </ul>
-            </nav>
+  <!-- Nav -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-white/70 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <a href="#" class="flex items-center gap-2">
+          <div class="h-8 w-8 rounded-xl bg-gradient-to-br from-indigo-500 via-sky-500 to-cyan-400"></div>
+          <span class="font-extrabold tracking-tight">OpenTMP LLM</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a href="#features" class="hover:text-slate-700">Features</a>
+          <a href="#architecture" class="hover:text-slate-700">Architecture</a>
+          <a href="#usecases" class="hover:text-slate-700">Use Cases</a>
+          <a href="#contact" class="hover:text-slate-700">Contact</a>
+        </nav>
+        <a href="#contact" class="hidden sm:inline-flex items-center rounded-xl bg-slate-900 text-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-slate-800">Get in touch</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-slate-100 via-white to-slate-50"></div>
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-20">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ring-1 ring-inset ring-slate-200 bg-white text-slate-600">Distributed LLM Training</span>
+          <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight">OpenTMP LLM: Secure, Efficient, and Governable Training</h1>
+          <p class="mt-5 text-lg text-slate-600 leading-7">OpenTMP LLM enables the secure, decentralized training of large language models with built-in privacy, governance, and high performance. Designed to scale with the needs of modern AI.</p>
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <a href="#features" class="inline-flex items-center rounded-xl bg-slate-900 text-white px-5 py-3 font-semibold shadow hover:bg-slate-800">Explore the solution</a>
+            <span class="text-sm text-slate-500">Designed for institutional-scale LLM training</span>
+          </div>
         </div>
-    </header>
-
-    <section class="hero-section container">
-        <div class="hero-content">
-            <span class="label">Governable Privacy Layer</span>
-            <h2>Secure & Governable Distributed Training</h2>
-            <p>Built on a FAST TEE protocol, OpenTMP keeps data and model weights confidential across distributed nodes, while enabling selective audit access for regulators. Designed for institutional-scale LLM training.</p>
-            
-            <div class="hero-actions">
-                <a href="#" class="btn btn-dark">Explore the solution</a>
-                <a href="#" class="btn btn-outline">Request demo</a>
+        <div class="relative">
+          <div class="mx-auto max-w-md">
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <div class="text-sm text-slate-500">Example flow</div>
+              <div class="mt-4 space-y-3">
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                  <div>
+                    <div class="text-xs text-slate-500">Training Data (private)</div>
+                    <div class="font-semibold">Data Provider: Entity A</div>
+                  </div>
+                  <div class="text-xs text-slate-500">encrypted</div>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                  <div>
+                    <div class="text-xs text-slate-500">Model Updates (private)</div>
+                    <div class="font-semibold">LLM Provider: Entity B</div>
+                  </div>
+                  <div class="text-xs text-slate-500">encrypted</div>
+                </div>
+                <div class="p-4 rounded-xl bg-indigo-600 text-white font-semibold text-center">Secure Distributed LLM Training</div>
+                <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 flex items-center justify-between">
+                  <div>
+                    <div class="text-xs">Output (public)</div>
+                    <div class="font-semibold">Trained Model Available</div>
+                  </div>
+                  <div class="text-xs">auditable if granted</div>
+                </div>
+              </div>
             </div>
-
-            <div class="hero-details">
-                Up to **10,000** concurrent nodes • N×N Model Slicing • L1/L2 ready
-            </div>
+            <p class="mt-3 text-center text-xs text-slate-500">Privacy by default • Governance by design</p>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="hero-flow">
-            <span class="flow-label">Example flow: Secure Training Epoch</span>
-            
-            <div class="flow-card input">
-                <div>
-                    <span style="color: #6d28d9; font-weight: 500;">Input A (private)</span>
-                    <h4>Client Data: Financial Records</h4>
-                </div>
-                <span class="status">encrypted</span>
-            </div>
-
-            <div class="flow-card input">
-                <div>
-                    <span style="color: #6d28d9; font-weight: 500;">Input B (private)</span>
-                    <h4>Model Weights: LLM (70B)</h4>
-                </div>
-                <span class="status">encrypted</span>
-            </div>
-            
-            <div class="flow-engine">
-                FAST TEE & Slicing Engine
-            </div>
-
-            <div class="flow-card output">
-                <div>
-                    <span style="font-weight: 500;">Output (public/validated)</span>
-                    <h4>Finalized Weight Update</h4>
-                </div>
-                <span>auditable if granted</span>
-            </div>
-
-            <span class="flow-label">Privacy by TEE • Audit by permission</span>
+  <!-- Features -->
+  <section id="features" class="py-16">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl font-extrabold tracking-tight">Key Highlights</h2>
+        <p class="mt-3 text-slate-600">OpenTMP LLM combines secure distributed model training, privacy, and governance for AI at scale.</p>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <div class="h-10 w-10 rounded-xl bg-slate-900/90 mb-4"></div>
+          <h3 class="font-semibold text-lg">Secure Model Training</h3>
+          <p class="mt-2 text-sm text-slate-600">Confidential training of large language models without exposing sensitive data.</p>
         </div>
-    </section>
-    
-    <hr class="container" style="border: none; border-top: 1px solid #e0e0e0;">
-
-    <section class="section-padding">
-        <div class="container">
-            <div class="section-header">
-                <h2>Key Highlights</h2>
-                <p>OpenTMP balances security, efficiency, and governance for real-world LLM deployment.</p>
-            </div>
-
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <i class="fas fa-lock icon-color-1"></i>
-                    <h3>Secure Training Epochs</h3>
-                    <p>End-to-end confidentiality between training nodes and data sources with TEE encryption and minimal metadata exposure.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <i class="fas fa-balance-scale icon-color-2"></i>
-                    <h3>Regulatory Auditability</h3>
-                    <p>Selective disclosure of audit logs via multi-key access for recognized regulators to verify training integrity and data use.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <i class="fas fa-tachometer-alt icon-color-3"></i>
-                    <h3>Zero-Cost Elastic Scheduling</h3>
-                    <p>Parallelized model slicing and dynamic resource aggregation enable highly efficient and scalable distributed training.</p>
-                </div>
-
-                <div class="feature-card">
-                    <i class="fas fa-cube icon-color-4"></i>
-                    <h3>Model Lifecycle Governance</h3>
-                    <p>All training parameters and dataset versions remain encrypted yet computable for robust audit and version control.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <i class="fas fa-code-branch icon-color-5"></i>
-                    <h3>N×N Heterogeneous Compute</h3>
-                    <p>Supports complex distributed flows, consortiums, and adaptive resource allocation across varied GPU/CPU stacks.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <i class="fas fa-cloud-upload-alt icon-color-6"></i>
-                    <h3>L1/L2 Ready Deployment</h3>
-                    <p>Modular deployment with clean interfaces for deployment on various public and private compute infrastructures.</p>
-                </div>
-
-            </div>
+        <!-- Card 2 -->
+        <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <div class="h-10 w-10 rounded-xl bg-indigo-600/90 mb-4"></div>
+          <h3 class="font-semibold text-lg">Efficient Distributed Training</h3>
+          <p class="mt-2 text-sm text-slate-600">Scalable, parallelized training framework to handle massive datasets and models.</p>
         </div>
-    </section>
-
-    <section class="architecture-section container">
-        <div class="architecture-header">
-            <h2>Architecture</h2>
-            <p>Four-layer design aligning business logic with cryptographic guarantees and infrastructure control.</p>
+        <!-- Card 3 -->
+        <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <div class="h-10 w-10 rounded-xl bg-cyan-500/90 mb-4"></div>
+          <h3 class="font-semibold text-lg">Built-in Privacy & Governance</h3>
+          <p class="mt-2 text-sm text-slate-600">Governance and regulatory compliance with fine-grained access control and auditing.</p>
         </div>
-
-        <div class="architecture-layer">
-            <h3>Application Layer</h3>
-            <p>LLM Fine-tuning • Knowledge Base Updates • Federated Learning • Enterprise Applications</p>
+        <!-- Card 4 -->
+        <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <div class="h-10 w-10 rounded-xl bg-emerald-500/90 mb-4"></div>
+          <h3 class="font-semibold text-lg">Cross-Entity Collaboration</h3>
+          <p class="mt-2 text-sm text-slate-600">Enables secure collaboration between multiple entities in training large-scale models.</p>
         </div>
-        
-        <div class="architecture-layer">
-            <h3>TEE Protocol Layer (FAST TEE/Slicing)</h3>
-            <p>N×N Slicing • Dynamic Resource Aggregation • Metadata Protection • Audit Gateway</p>
-        </div>
-        
-        <div class="architecture-layer">
-            <h3>Cryptographic Primitives</h3>
-            <p>Secret Sharing • Remote Attestation • HE (for specific ops) – balanced compute/comm</p>
-        </div>
-        
-        <div class="architecture-layer">
-            <h3>Infrastructure</h3>
-            <p>Cloud/On-prem deployment • TEE channels • Regulator access controls • Version Control Systems</p>
-        </div>
-    </section>
-    
-    <section class="section-padding" style="background-color: var(--white-card);">
-        <div class="container">
-            <div class="section-header">
-                <h2>Industry Applications</h2>
-                <p>Where OpenTMP LLM fits in production environments.</p>
-            </div>
-
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>Regulated LLM Deployment</h3>
-                    <p>Secure fine-tuning for financial institutions and banks with auditable trails for compliance and risk management.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>Data-Private Analytics</h3>
-                    <p>Aggregate insights across encrypted client datasets without exposing individual identities or sensitive data to the model trainers.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>Critical Infrastructure Deployment</h3>
-                    <p>Privacy-preserving LLM usage for national security and defense applications where data confidentiality is paramount.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact-section">
-        <div class="container contact-content">
-            <div class="contact-info">
-                <h2>Collaborate with us</h2>
-                <p>Bring regulatory-grade privacy and efficiency to your LLM projects, compute cluster, or institutional research.</p>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> Integration support for L1/L2 compute stacks</li>
-                    <li><i class="fas fa-check-circle"></i> PoC timelines for compliance teams</li>
-                    <li><i class="fas fa-check-circle"></i> Deployment & performance tuning</li>
-                </ul>
-            </div>
-            
-            <div class="contact-form-card">
-                <form action="#" method="POST">
-                    <label for="email">Work Email</label>
-                    <input type="email" id="email" name="email" placeholder="you@company.com" required>
-
-                    <label for="company">Company</label>
-                    <input type="text" id="company" name="company" placeholder="Company name">
-
-                    <label for="usecase">What are you building?</label>
-                    <textarea id="usecase" name="usecase" placeholder="Tell us briefly about your use case"></textarea>
-
-                    <button type="submit" class="btn-submit">Request a call</button>
-                </form>
-                <p class="disclaimer">By submitting, you agree to be contacted by OpenTMP LLM.</p>
-            </div>
-        </div>
-    </section>
-    
-    <footer class="contact-section" style="padding: 30px 0; text-align: center; background-color: #0b1118; font-size: 0.9rem;">
-        <div class="container">
-            <p>&copy; 2025 OpenTMP LLM | All Rights Reserved.</p>
-        </div>
-    </footer>
-
+        <!-- Card 5 -->
+        <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <div class="h-10 w-
 </body>
 </html>
