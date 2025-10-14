@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenTMP LLM Framework - Tx-Shield 模板</title>
+    <title>OpenTMP LLM Framework: Secure, Efficient, and Governable Training</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Base Styles - Adapted from Tx-Shield's apparent styling */
+        /* CSS Styles: Copied from Tx-Shield template */
         :root {
-            --primary-bg: #1a1a2e; /* Dark background from Tx-Shield */
-            --secondary-bg: #16213e; /* Slightly lighter dark for sections */
-            --accent-color: #e94560; /* Reddish accent from Tx-Shield */
-            --text-color: #e0e0e0; /* Light text color */
-            --light-gray-text: #a0a0a0; /* For descriptions/footer */
+            --primary-bg: #1a1a2e;
+            --secondary-bg: #16213e;
+            --accent-color: #e94560;
+            --text-color: #e0e0e0;
+            --light-gray-text: #a0a0a0;
             --white-text: #ffffff;
-            --link-hover-color: #533483; /* Purple hover for links */
-            --container-width: 960px; /* Max width for content */
-            --header-height: 80px;
+            --link-hover-color: #533483;
+            --container-width: 1000px; 
+            --header-height: 70px;
         }
 
         * {
@@ -32,17 +34,17 @@
             color: var(--text-color);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            scroll-behavior: smooth;
         }
 
         a {
             color: var(--accent-color);
             text-decoration: none;
+            transition: color 0.3s;
         }
 
         a:hover {
             color: var(--link-hover-color);
-            text-decoration: underline;
+            text-decoration: none;
         }
 
         ul {
@@ -58,8 +60,6 @@
         /* Header / Navbar */
         .header {
             background-color: var(--secondary-bg);
-            color: var(--white-text);
-            padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -73,7 +73,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 100%;
         }
 
         .logo {
@@ -98,62 +97,65 @@
             color: var(--white-text);
             font-weight: 400;
             font-size: 1.1rem;
-            transition: color 0.3s ease;
         }
 
-        .navbar ul li a:hover,
-        .navbar ul li a.active {
+        .navbar ul li a:hover {
             color: var(--accent-color);
-            text-decoration: none;
         }
 
-        /* Hero Section - Adapted for article title */
+        /* Hero Section */
         .hero {
-            background-color: var(--primary-bg);
             padding: 80px 0 40px;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.2rem;
             margin-bottom: 20px;
             color: var(--white-text);
+            line-height: 1.2;
         }
 
         .hero p {
             font-size: 1.3rem;
             color: var(--light-gray-text);
             max-width: 800px;
-            margin: 0 auto 30px;
+            margin: 0 auto;
         }
         .article-meta {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--light-gray-text);
-            margin-top: 15px;
+            margin-top: 25px;
             display: block;
+            opacity: 0.8;
         }
 
-        /* Main Content Section - Article Body */
+
+        /* Main Content Section */
         .main-content {
             padding: 60px 0;
-            background-color: var(--secondary-bg); /* Slightly different background for content */
+            background-color: var(--secondary-bg);
             box-shadow: 0 0 20px rgba(0,0,0,0.4);
             margin-bottom: 40px;
+        }
+
+        .article-body {
+            padding: 0 20px;
         }
 
         .article-body h2 {
             font-size: 2.2rem;
             color: var(--accent-color);
-            margin-top: 40px;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--accent-color);
+            margin-top: 45px;
+            margin-bottom: 25px;
             padding-bottom: 10px;
+            border-bottom: 1px solid var(--accent-color);
         }
 
         .article-body h3 {
             font-size: 1.7rem;
             color: var(--white-text);
-            margin-top: 30px;
+            margin-top: 35px;
             margin-bottom: 15px;
         }
 
@@ -168,30 +170,21 @@
             max-width: 100%;
             height: auto;
             display: block;
-            margin: 30px auto;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            margin: 40px auto;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .article-body ul {
             list-style: disc;
-            margin-left: 20px;
+            margin-left: 30px;
             margin-bottom: 20px;
         }
-
+        
         .article-body ul li {
             margin-bottom: 10px;
             font-size: 1.1rem;
-        }
-
-        .quote-box {
-            background-color: rgba(var(--accent-color), 0.1);
-            border-left: 5px solid var(--accent-color);
-            padding: 20px;
-            margin: 30px 0;
-            font-style: italic;
-            color: var(--light-gray-text);
-            font-size: 1.2em;
         }
 
         /* Footer */
@@ -206,9 +199,8 @@
 
         .footer .social-icons a {
             color: var(--light-gray-text);
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: color 0.3s ease;
+            font-size: 1.8rem;
+            margin: 0 12px;
         }
 
         .footer .social-icons a:hover {
@@ -228,7 +220,105 @@
                 margin-top: 15px;
             }
             .navbar ul li {
-                margin: 0 10px;
+                margin: 0 8px;
             }
             .hero h1 {
-                font
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .article-body h2 {
+                font-size: 1.8rem;
+            }
+            .article-body p, .article-body ul li {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">StateLabs-<span>LLM</span></a>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Framework</a></li>
+                    <li><a href="#">Docs</a></li>
+                    <li><a href="#">Github</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>OpenTMP LLM Framework: A Secure, Efficient, and Governable Framework for Distributed Large Language Model Training</h1>
+            <p>The OpenTMP Framework is designed for distributed Large Language Model (LLM) training, aiming to solve core challenges like security compliance, resource utilization, and model governance facing existing LLM training architectures.</p>
+            <span class="article-meta">Published on September 19, 2025 | Author: StateLabs Team</span>
+        </div>
+    </section>
+
+    <section class="main-content">
+        <div class="container">
+            <div class="article-body">
+                
+                <img src="https://statelabs.ai/wp-content/uploads/2025/09/19/opentmp-llm-framework-a-secure-and-efficient-and-governable-framework-for-distributed-large-language-model-training/OpenTMP-Framework-Architecture.png" 
+                     alt="OpenTMP Framework Architecture" 
+                     title="OpenTMP LLM Framework Architecture">
+
+                <h2>1. Framework Overview and Core Design Principles</h2>
+                <p>As the scale of LLMs continues to expand, distributed training has become a necessity. However, traditional distributed LLM training architectures suffer from significant shortcomings in security compliance, resource utilization, and model governance. The OpenTMP LLM Framework addresses these issues through the following core principles:</p>
+                
+                <ul>
+                    <li>**Secure Computing Environment:** Utilizing TEE (Trusted Execution Environment) technology to ensure the confidentiality and integrity of data and models during training.</li>
+                    <li>**Efficient Resource Scheduling:** Based on Zero-cost elastic scheduling and heterogeneous resource optimization to increase the utilization of GPU/CPU resources and training speed.</li>
+                    <li>**Governable Model Lifecycle:** Providing full lifecycle auditing and version control, from data preparation and model training to deployment.</li>
+                </ul>
+
+                <h2>2. Introduction of the Secure Computing Environment (TEE)</h2>
+                <p>The OpenTMP Framework encapsulates the entire LLM training process within a hardware-level secure enclave provided by TEE. This means:</p>
+                
+                <h3>2.1 Data and Model Confidentiality</h3>
+                <p>Training data and LLM model weights remain encrypted within the TEE. Even cloud service providers or system administrators cannot directly access sensitive information. This design meets stringent data compliance requirements.</p>
+
+                <h3>2.2 Integrity Verification and Anti-Tampering</h3>
+                <p>TEE provides a Remote Attestation mechanism, ensuring that only verified, unmodified training code can run within the secure enclave. This effectively prevents the injection of malicious code or the tampering of model training parameters.</p>
+
+                <h2>3. Zero-Cost Elastic Scheduling and Resource Optimization</h2>
+                <p>To address the low resource utilization common in distributed training, OpenTMP introduces the Zero-Cost Elastic Scheduler.</p>
+                
+                <p>This scheduler employs an innovative **Model Slicing Adaptive Algorithm**, which dynamically adjusts the LLM's parallel strategy (such as tensor parallelism and pipeline parallelism) based on real-time available heterogeneous resources (GPU models, memory bandwidth). This maximizes resource utilization and allows for elastic scaling without interrupting training.</p>
+                
+                <h2>4. Model Governance and Audit Logs</h2>
+                <p>For enterprise-level applications, auditing and governance of the LLM training process are critical. The OpenTMP Framework provides a built-in governance module:</p>
+                
+                <ul>
+                    <li>**Version Control:** Automatic snapshotting and version tagging for every training iteration, dataset version, and model parameter.</li>
+                    <li>**Audit Logs:** Recording all critical training events, resource consumption, and security verification results, generating immutable audit logs.</li>
+                    <li>**Compliance Reporting:** Automatically generating compliance reports that meet industry standards, proving the security and trustworthiness of the training process.</li>
+                </ul>
+
+                <h2>Conclusion</h2>
+                <p>The OpenTMP LLM Framework offers an end-to-end solution for distributed LLM training, successfully combining hardware-level security, efficient resource management, and strict model governance. The framework not only boosts training efficiency but also lays a solid foundation for LLM applications in highly security-compliant sectors like finance, healthcare, and defense.</p>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>Copyright &copy; 2025 StateLabs | Powered by <a href="https://joezyxstatelabs.github.io/Tx-Shield/" target="_blank">Tx-Shield Template</a></p>
+            <p>Content copyright belongs to StateLabs</p>
+        </div>
+    </footer>
+
+</body>
+</html>
