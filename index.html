@@ -7,71 +7,78 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <!-- Header Section -->
     <header>
-        <h1>OpenTMP LLM Framework</h1>
-        <p><strong>Secure, Efficient, and Scalable Distributed Training for Large Language Models</strong></p>
+        <div class="header-container">
+            <h1 class="header-title">OpenTMP LLM Framework</h1>
+            <p class="header-subtitle">Secure, Efficient, and Scalable Distributed Training for Large Language Models</p>
+        </div>
     </header>
 
-    <section class="intro">
-        <h2>Introduction</h2>
-        <p>The OpenTMP LLM framework is designed to meet the growing need for secure, efficient, and scalable training of Large Language Models (LLMs). Traditional centralized data approaches for training LLMs often risk exposing sensitive data. OpenTMP solves this problem by combining Federated Learning with advanced Multi-Party Computation (MPC) techniques, enabling collaborative training while ensuring data privacy and security.</p>
-    </section>
-
-    <section class="features">
+    <!-- Features Section -->
+    <section id="features" class="section">
         <h2>Key Features</h2>
-        <ul>
-            <li><strong>Private Training:</strong> Enables secure local training and confidential inference, protecting user privacy throughout the process.</li>
-            <li><strong>Efficient LLM Performance:</strong> Optimizes model training using edge AI acceleration, knowledge distillation, and parameter quantization, making it ideal for resource-constrained environments.</li>
-            <li><strong>Scalable Collaboration:</strong> Supports decentralized, multi-party collaborative training with secure aggregation techniques to protect data from leakage.</li>
-        </ul>
+        <div class="features-list">
+            <div class="feature-item">
+                <h3>Private Training</h3>
+                <p>OpenTMP enables secure local training and confidential inference, protecting user privacy throughout the training and inference phases. With our MPC-based technology, sensitive data is never exposed to any party.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Efficient Performance</h3>
+                <p>By integrating Edge AI acceleration, model distillation, and parameter quantization, OpenTMP significantly boosts training efficiency while reducing resource requirements. Ideal for constrained environments.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Collaborative & Scalable</h3>
+                <p>Supports decentralized multi-party training with secure aggregation techniques, enabling collaborative AI development without compromising data privacy. Scales from small teams to large-scale distributed systems.</p>
+            </div>
+        </div>
     </section>
 
-    <section class="core-design">
+    <!-- Core Design Principles -->
+    <section id="core-design" class="section">
         <h2>Core Design Principles</h2>
-        <p>OpenTMP is built on a unique Hybrid MPC Distributed Learning (HMDL) protocol that combines the power of distributed learning with MPC’s cryptographic security. This hybrid protocol ensures that data privacy is maintained during both the training and inference phases, allowing multiple parties to collaborate on training a model without sharing their raw data or local model updates.</p>
-        
-        <p>Key benefits include:
-        <ul>
-            <li>Secure data handling with advanced cryptographic techniques.</li>
-            <li>Enhanced computational efficiency with the high-speed MPC engine, optimizing both computation and communication overhead.</li>
-            <li>Flexibility in deployment, supporting a variety of modes including local, centralized, and peer-to-peer setups.</li>
-        </ul>
-        </p>
+        <p>The OpenTMP LLM framework uses a Hybrid MPC Distributed Learning (HMDL) protocol, which merges distributed training with advanced MPC cryptography. This ensures that data privacy is maintained even during collaborative training, while still enabling high training efficiency.</p>
+        <p>The system is designed to handle complex distributed learning environments and scales efficiently with minimal overhead, thanks to its Fast MPC Engine and flexible architecture.</p>
     </section>
 
-    <section class="example-flow">
+    <!-- Example Flow -->
+    <section id="example-flow" class="section">
         <h2>Example Flow: Secure Training Epoch</h2>
-        <p>Here’s a simplified view of how OpenTMP ensures secure training in a distributed, privacy-preserving environment:</p>
         <div class="flow-diagram">
             <ul>
                 <li><strong>Input A (private):</strong> Client Data (e.g., Financial Records) - encrypted</li>
                 <li><strong>Input B (private):</strong> Model Weights (e.g., LLM 70B) - encrypted</li>
-                <li><strong>FAST TEE & Slicing Engine:</strong> Secure processing of inputs</li>
+                <li><strong>FAST TEE & Slicing Engine:</strong> Secure processing and aggregation of inputs</li>
                 <li><strong>Output (public/validated):</strong> Finalized Weight Update - auditable if granted</li>
             </ul>
         </div>
-        <p>This flow ensures that sensitive data is never exposed, while enabling efficient, auditable updates to the model. The key to this security lies in the hybrid MPC protocol, which allows multiple parties to collaborate on model training while maintaining strict privacy standards.</p>
+        <p>This flow demonstrates how OpenTMP securely trains LLMs by ensuring data privacy at every step. The encrypted inputs and secure aggregation during processing prevent unauthorized data access and maintain auditability of the final model updates.</p>
     </section>
 
-    <section class="applications">
+    <!-- Applications -->
+    <section id="applications" class="section">
         <h2>Applications</h2>
         <h3>Financial Technology (FinTech)</h3>
-        <p>OpenTMP enables multiple financial institutions to collaboratively train a more robust model for fraud detection or credit risk assessment, without sharing sensitive transaction data. The MPC-based privacy layer ensures that all parties comply with privacy regulations while benefiting from a larger and more diverse dataset.</p>
+        <p>OpenTMP enables multiple financial institutions to collaboratively train models for credit risk assessment or fraud detection without sharing sensitive transaction data. By leveraging MPC technology, the privacy of each party’s data is preserved, enabling a more accurate and generalized model.</p>
 
         <h3>Robotics</h3>
-        <p>In industries like smart manufacturing or autonomous robotics, OpenTMP allows devices to train locally, reducing latency and improving real-time decision-making. By processing data directly on the device, OpenTMP enhances both performance and security in distributed robotic systems.</p>
+        <p>For robotics and smart manufacturing, OpenTMP enables local, decentralized training, allowing devices to process data in real time without relying on cloud-based servers. This reduces latency and enhances the reliability of robotic systems while ensuring data security.</p>
 
         <h3>AI Agents</h3>
-        <p>For personalized AI agents, such as smart assistants or recommendation systems, OpenTMP ensures that user data remains confidential during training and inference. This privacy-first approach is crucial for building trustworthy AI systems that handle sensitive information responsibly.</p>
+        <p>In personalized AI agents such as smart assistants, OpenTMP ensures that sensitive user data remains private during both training and inference, helping build trust in AI systems while maintaining compliance with data privacy regulations.</p>
     </section>
 
-    <section class="conclusion">
+    <!-- Conclusion -->
+    <section id="conclusion" class="section">
         <h2>Conclusion</h2>
-        <p>The OpenTMP LLM framework offers a secure, efficient, and scalable solution for distributed LLM training, making it ideal for industries like FinTech, robotics, and AI agents. By leveraging advanced MPC technology, OpenTMP addresses key challenges in data privacy, model security, and collaboration. With its robust features, OpenTMP is well-suited to meet the demands of both research and production environments in the evolving AI landscape.</p>
+        <p>OpenTMP LLM offers a robust, secure, and scalable solution for distributed large language model training. By combining federated learning with advanced MPC technology, it provides privacy-preserving collaboration for industries like FinTech, robotics, and AI agents. With its flexible architecture and high efficiency, OpenTMP is designed to meet the rigorous demands of modern AI applications.</p>
     </section>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 OpenTMP Framework. All rights reserved.</p>
     </footer>
+
 </body>
 </html>
