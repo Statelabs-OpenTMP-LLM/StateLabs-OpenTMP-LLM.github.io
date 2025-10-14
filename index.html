@@ -1,149 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenTMP LLM Framework</title>
-    <meta name="description" content="OpenTMP: A secure, efficient, and governable framework for distributed large language model (LLM) training.">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Custom Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-
-        .card {
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OpenTMP LLM – Governable Distributed AI</title>
+  <meta name="description" content="OpenTMP: A fast, performant, secure distributed training framework for LLMs, utilizing TEE and model slicing for unparalleled security and efficiency.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+    .card { transition: transform .25s ease, box-shadow .25s ease; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+    /* Custom colors for an AI theme */
+    .ai-gradient { background-image: linear-gradient(to bottom right, #4c1d95, #6d28d9, #0f766e); }
+  </style>
 </head>
+<body class="bg-slate-50 text-slate-900">
+    <header class="sticky top-0 z-50 backdrop-blur bg-white/70 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <a href="#" class="flex items-center gap-2">
+          <div class="h-8 w-8 rounded-xl ai-gradient flex items-center justify-center text-white font-bold text-lg">O</div>
+          <span class="font-extrabold tracking-tight">Open&nbsp;TMP</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a href="#features" class="hover:text-slate-700">Features</a>
+          <a href="#architecture" class="hover:text-slate-700">Architecture</a>
+          <a href="#usecases" class="hover:text-slate-700">Use Cases</a>
+          <a href="#contact" class="hover:text-slate-700">Contact</a>
+        </nav>
+        <a href="#contact" class="hidden sm:inline-flex items-center rounded-xl bg-indigo-600 text-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-indigo-700">Explore Deployment</a>
+      </div>
+    </div>
+  </header>
 
-<body class="bg-gray-50 text-gray-900">
+    <section class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-slate-100 via-white to-slate-50"></div>
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-20">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ring-1 ring-inset ring-slate-200 bg-white text-indigo-600">Governable Distributed AI Training</span>
+          <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight">Secure & Performant LLM Fine-Tuning</h1>
+          <p class="mt-5 text-lg text-slate-600 leading-7">OpenTMP provides a secure and efficient framework for co-training Large Language Models (LLMs). It uses **Model Slicing** and **Trusted Execution Environments (TEE)** to prevent model and data theft in distributed/federated settings.</p>
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <a href="#features" class="inline-flex items-center rounded-xl bg-indigo-600 text-white px-5 py-3 font-semibold shadow hover:bg-indigo-700">Explore the Technology</a>
+            <span class="text-sm text-slate-500"><strong>Near-Linear Scalability</strong> • TEE-Secured • Model Slicing Ready</span>
+          </div>
+        </div>
+        <div class="relative">
+                    <div class="mx-auto max-w-md">
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <div class="text-sm text-slate-500">Secure Fine-Tuning Flow</div>
+              <div class="mt-4 space-y-3">
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                  <div>
+                    <div class="text-xs text-slate-500">Input (Secured)</div>
+                    <div class="font-semibold">Client Data Silo</div>
+                </div>
+                  <div class="text-xs text-slate-500">slicing + TEE</div>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                  <div>
+                    <div class="text-xs text-slate-500">Transfer (Encrypted)</div>
+                    <div class="font-semibold">Model Slices/Gradients</div>
+                  </div>
+                  <div class="text-xs text-slate-500">lightweight encryption</div>
+                </div>
+                <div class="p-4 rounded-xl bg-indigo-600 text-white font-semibold text-center">Distributed TEE Aggregation</div>
+                <div class="p-4 rounded-xl bg-lime-50 border border-lime-200 text-lime-800 flex items-center justify-between">
+                  <div>
+                    <div class="text-xs">Output (Validated)</div>
+                    <div class="font-semibold">Updated Global Model</div>
+                  </div>
+                  <div class="text-xs">theft-proof</div>
+                </div>
+              </div>
+            </div>
+            <p class="mt-3 text-center text-xs text-slate-500">Security via isolation • Performance via slicing</p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Navbar -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <a href="#" class="flex items-center gap-2">
-                    <div class="h-8 w-8 rounded-lg bg-gradient-to-br from-indigo-500 via-blue-500 to-teal-400"></div>
-                    <span class="font-extrabold text-xl">OpenTMP</span>
-                </a>
-                <nav class="hidden md:flex items-center gap-8 text-sm">
-                    <a href="#overview" class="hover:text-gray-700">Overview</a>
-                    <a href="#features" class="hover:text-gray-700">Features</a>
-                    <a href="#use-cases" class="hover:text-gray-700">Use Cases</a>
-                    <a href="#contact" class="hover:text-gray-700">Contact</a>
-                </nav>
-                <a href="#contact" class="hidden sm:inline-flex items-center rounded-lg bg-gray-900 text-white px-4 py-2 text-sm font-semibold hover:bg-gray-800">Get in touch</a>
-            </div>
-        </div>
-    </header>
+    <section id="features" class="py-16">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl font-extrabold tracking-tight">Key Pillars of OpenTMP</h2>
+        <p class="mt-3 text-slate-600">OpenTMP balances security, distributed performance, and data governance for enterprise AI training.</p>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <div class="h-10 w-10 rounded-xl bg-slate-900/90 mb-4 flex items-center justify-center text-white font-bold">🛡️</div>
+          <h3 class="font-semibold text-lg">TEE-Based Security</h3>
+          <p class="mt-2 text-sm text-slate-600">Utilizes Trusted Execution Environments (TEE) on both client and server to isolate and protect critical model parameters.</p>
+        </div>
+                <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <div class="h-10 w-10 rounded-xl bg-indigo-600/90 mb-4 flex items-center justify-center text-white font-bold">✂️</div>
+          <h3 class="font-semibold text-lg">Model Slicing Protocol</h3>
+          <p class="mt-2 text-sm text-slate-600">A novel approach to splitting LLM layers, minimizing the need for complex TEEs on client-side hardware while maintaining performance.</p>
+        </div>
+                <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <div class="h-10 w-10 rounded-xl bg-teal-500/90 mb-4 flex items-center justify-center text-white font-bold">⚡</div>
+          <h3 class="font-semibold text-lg">Performant Fine-Tuning</h3>
+          <p class="mt-2 text-sm text-slate-600">Integrates **Split Fine-Tuning** and LoRA with **Sparsification Parameter Fine-tuning (SPF)** for high efficiency and accuracy.</p>
+        </div>
+                <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <div class="h-10 w-10 rounded-xl bg-lime-500/90 mb-4 flex items-center justify-center text-white font-bold">🔒</div>
+          <h3 class="font-semibold text-lg">Anti-Theft Communication</h3>
+          <p class="mt-2 text-sm text-slate-600">Employs lightweight encryption, such as One-Time Pad (OTP), for secure gradient and intermediate data transfer.</p>
+        </div>
+                <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <div class="h-10 w-10 rounded-xl bg-fuchsia-600/90 mb-4 flex items-center justify-center text-white font-bold">🌐</div>
+          <h3 class="font-semibold text-lg">Federated Co-Training</h3>
+          <p class="mt-2 text-sm text-slate-600">Enables multiple parties with siloed, private data to collaboratively train a high-performance, domain-specific LLM.</p>
+        </div>
+                <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <div class="h-10 w-10 rounded-xl bg-amber-500/90 mb-4 flex items-center justify-center text-white font-bold">⚙️</div>
+          <h3 class="font-semibold text-lg">Hardware Agnostic</h3>
+          <p class="mt-2 text-sm text-slate-600">Designed for flexible deployment across diverse infrastructures, including GPU clusters, edge devices, and cloud-based TEEs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden py-20">
-        <div class="absolute inset-0 bg-gradient-to-b from-gray-100 to-white z-0"></div>
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 z-10">
-            <div class="grid lg:grid-cols-2 gap-10 items-center">
-                <div>
-                    <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold">OpenTMP LLM Framework</h1>
-                    <p class="mt-5 text-lg text-gray-600">Secure, Efficient, and Governable Distributed Training for Large Language Models.</p>
-                    <p class="mt-2 text-gray-600">The OpenTMP LLM framework integrates federated learning with multi-party computation (MPC) cryptography, ensuring data privacy while enabling distributed training of large language models.</p>
-                    <div class="mt-8 flex items-center gap-6">
-                        <a href="#features" class="inline-flex items-center bg-gray-900 text-white px-5 py-3 font-semibold rounded-xl hover:bg-gray-800">Learn More</a>
-                    </div>
-                </div>
-                <div>
-                    <img src="https://via.placeholder.com/400" alt="OpenTMP LLM Framework" class="w-full rounded-lg shadow-lg">
-                </div>
-            </div>
-        </div>
-    </section>
+    <section id="architecture" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl font-extrabold tracking-tight">System Architecture</h2>
+        <p class="mt-3 text-slate-600">A layered approach integrating cryptographic isolation with large-scale distributed training logic.</p>
+      </div>
 
-    <!-- Features Section -->
-    <section id="features" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto">
-                <h2 class="text-3xl font-extrabold">Key Features</h2>
-                <p class="mt-4 text-gray-600">Explore how OpenTMP addresses data privacy and training efficiency in distributed LLM environments.</p>
-            </div>
-            <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature Card 1 -->
-                <div class="card rounded-xl border bg-white p-6 shadow-lg">
-                    <div class="h-12 w-12 rounded-xl bg-indigo-600 mb-4"></div>
-                    <h3 class="font-semibold text-lg">Secure LLM Training</h3>
-                    <p class="text-gray-600 mt-2">Combines federated learning with MPC to ensure data privacy during distributed training and inference.</p>
-                </div>
-                <!-- Feature Card 2 -->
-                <div class="card rounded-xl border bg-white p-6 shadow-lg">
-                    <div class="h-12 w-12 rounded-xl bg-teal-500 mb-4"></div>
-                    <h3 class="font-semibold text-lg">Efficient LLM Performance</h3>
-                    <p class="text-gray-600 mt-2">Advanced techniques such as Edge AI acceleration, model distillation, and quantization optimize model performance.</p>
-                </div>
-                <!-- Feature Card 3 -->
-                <div class="card rounded-xl border bg-white p-6 shadow-lg">
-                    <div class="h-12 w-12 rounded-xl bg-purple-600 mb-4"></div>
-                    <h3 class="font-semibold text-lg">Governable LLM Training</h3>
-                    <p class="text-gray-600 mt-2">Collaborative training with shared model ownership and MPC-based joint training enhances governance and security.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="mt-10 rounded-2xl border border-slate-200 bg-slate-50 p-6">
+        <svg viewBox="0 0 900 470" class="w-full h-auto">
+                    <rect x="30" y="30" width="840" height="80" rx="14" class="fill-white stroke-slate-300" stroke-width="2"></rect>
+          <text x="50" y="75" font-size="18" font-weight="700" fill="#0f172a">LLM Application Layer</text>
+          <text x="50" y="98" font-size="13" fill="#334155">Domain-Specific LLMs • Secure Chatbots • Code Generation • Confidential Inference</text>
 
-    <!-- Use Cases Section -->
-    <section id="use-cases" class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto">
-                <h2 class="text-3xl font-extrabold">Application Scenarios</h2>
-                <p class="mt-4 text-gray-600">See how OpenTMP LLM Framework is applied across various industries like FinTech, Robotics, and AI Agents.</p>
-            </div>
-            <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card rounded-xl border bg-white p-6 shadow-lg">
-                    <h3 class="font-semibold">FinTech</h3>
-                    <p class="text-gray-600 mt-2">Collaborative training for robust financial models while ensuring privacy protection for sensitive data.</p>
-                </div>
-                <div class="card rounded-xl border bg-white p-6 shadow-lg">
-                    <h3 class="font-semibold">Robotics</h3>
-                    <p class="text-gray-600 mt-2">Distributed post-training for robotics, enhancing model adaptation and inference on edge devices.</p>
-                </div>
-                <div class="card rounded-xl border bg-white p-6 shadow-lg">
-                    <h3 class="font-semibold">AI Agents</h3>
-                    <p class="text-gray-600 mt-2">Protection of user data and intellectual property during training and inference for AI assistants and recommendation systems.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <rect x="30" y="130" width="840" height="110" rx="14" class="fill-white stroke-slate-300" stroke-width="2"></rect>
+          <text x="50" y="175" font-size="18" font-weight="700" fill="#0f172a">Secure Distributed Core (OpenTMP Engine)</text>
+          <text x="50" y="198" font-size="13" fill="#334155">Model Slicing Logic • Distributed TEE Management • Federated Aggregation • Governance Policy Enforcement</text>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto">
-                <h2 class="text-3xl font-extrabold">Contact Us</h2>
-                <p class="mt-4 text-gray-600">Learn more or get in touch to integrate the OpenTMP LLM Framework into your workflow!</p>
-            </div>
-            <div class="mt-8 text-center">
-                <a href="mailto:contact@opentmp.com" class="inline-flex items-center bg-gray-900 text-white px-6 py-3 font-semibold rounded-lg hover:bg-gray-800">Contact Us</a>
-            </div>
-        </div>
-    </section>
+                    <rect x="30" y="260" width="840" height="90" rx="14" class="fill-white stroke-slate-300" stroke-width="2"></rect>
+          <text x="50" y="300" font-size="18" font-weight="700" fill="#0f172a">Efficiency & Security Primitives</text>
+          <text x="50" y="323" font-size="13" fill="#334155">LoRA/P-tuning v2 Integration • SPF (Sparsification) • Lightweight Encryption (OTP) • TEE Attestation</text>
 
-    <!-- Footer -->
-    <footer class="py-10 bg-gray-900 text-white">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-sm flex justify-between items-center">
-            <div>&copy; 2025 OpenTMP, All Rights Reserved</div>
-            <div class="flex gap-4">
-                <a href="#" class
+                    <rect x="30" y="370" width="840" height="70" rx="14" class="fill-white stroke-slate-300" stroke-width="2"></rect>
+          <text x="50" y="410" font-size="18" font-weight="700" fill="#0f172a">Infrastructure & Hardware</text>
+          <text x="50" y="433" font-size="13" fill="#334155">GPU/TPU Clusters • Client/Edge Nodes • Server-Side TEEs (e.g., Intel SGX) • Secure Communication Channels</text>
+        </svg>
+        <p class="mt-3 text-xs text-slate-500">Illustrative only. Supports flexible partitioning strategies and diverse hardware stacks.</p>
+      </div>
+
+            <div class="mt-10 grid lg:grid-cols-3 gap-6">
+        <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <h3 class="font-semibold">Confidential Model Co-Training</h3>
+          <p class="mt-2 text-sm text-slate-600">The framework enables joint fine-tuning without exposing proprietary data or critical model parameters to untrusted parties.</p>
+        </div>
+        <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <h3 class="font-semibold">Optimized Performance</h3>
+          <p class="mt-2 text-sm text-slate-600">The split fine-tuning scheme reduces client resource requirements and significantly boosts overall training speed and throughput.</p>
+        </div>
+        <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <h3 class="font-semibold">Decentralized Trust Model</h3>
+          <p class="mt-2 text-sm text-slate-600">Shifts security focus from purely relying on central server trust to hardware-enforced isolation via TEEs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section id="usecases" class="py-16">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl font-extrabold tracking-tight">LLM Training Applications</h2>
+        <p class="mt-3 text-slate-600">Where OpenTMP unlocks secure, real-world deployment of collaborative AI.</p>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <h3 class="font-semibold">Healthcare & Pharma</h3>
+          <p class="mt-2 text-sm text-slate-600">Fine-tuning medical LLMs across hospital networks using highly sensitive patient data without violating privacy regulations like HIPAA.</p>
+        </div>
+        <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <h3 class="font-semibold">Financial & Legal Services</h3>
+          <p class="mt-2 text-sm text-slate-600">Building regulatory-compliant, domain-specific AI models using proprietary financial reports and confidential legal texts.</p>
+        </div>
+        <div class="card rounded-2xl border border-slate-200 bg-white p-6">
+          <h3 class="font-semibold">Enterprise & Defense AI</h3>
+          <p class="mt-2 text-sm text-slate-600">Securely deploying and updating mission-critical LLMs on edge devices or in high-security, air-gapped environments with guaranteed integrity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section id="requestdemo" class="py-20 bg-gradient-to-br from-indigo-800 via-slate-800 to-slate-900 text-white">
+    <div class="max-w-5xl mx-auto px-6 lg:px-8 text-center">
+      <div class="rounded-3xl border border-white/10 bg-white/5 p-10 shadow-2xl">
+        <h2 class="text-3xl font-extrabold">Ready to Secure Your LLM Workflow?</h2>
+        <p class="mt-4 text-white/80 text-lg">Schedule a technical deep dive with our lead engineers to understand TEE integration and performance benchmarks for your specific hardware.</p>
+        <a href="#contact" class="mt-8 inline-flex items-center rounded-xl bg-white text-slate-900 px-6 py-3 font-semibold shadow hover:bg-slate-100">Request Technical Demo →</a>
+      </div>
+    </div>
+  </section>
+
+    <section id="contact" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="rounded-2xl border border-slate-200 bg-gradient-to-br from-indigo-700 to-indigo-900 text-white p-8 lg:p-10">
+        <div class="grid lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <h3 class="text-2xl font-extrabold">Collaborate on Secure AI</h3>
+            <p class="mt-3 text-white/80">Integrate OpenTMP to build the next generation of secure, decentralized LLM platforms.</p>
+            <ul class="mt-4 space-y-1 text-sm text-white/70 list-disc list-inside">
+              <li>PoC deployment for federated learning consortia</li>
+              <li>TEE integration and validation support</li>
+              <li>LLM performance optimization and scaling</li>
+            </ul>
+          </div>
+          <form class="bg-white rounded-xl p-6 text-slate-900 space-y-4">
+            <div>
+              <label class="text-sm font-medium">Work Email</label>
+              <input type="email" placeholder="you@researchlab.ai" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+            </div>
+            <div>
+              <label class="text-sm font-medium">Organization</label>
+              <input type="text" placeholder="Institution or Company Name" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <div>
+              <label class="text-sm font-medium">Use Case / LLM Goal</label>
+              <textarea rows="3" placeholder="e.g., Federated fine-tuning for a 7B parameter model on edge devices" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+            </div>
+            <button type="submit" class="w-full rounded-lg bg-indigo-600 text-white py-2.5 font-semibold hover:bg-indigo-700">Request a call</button>
+            <p class="text-xs text-slate-500">By submitting, you agree to be contacted about the OpenTMP framework.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 text-sm text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>© <span id="y"></span> OpenTMP Labs • Secure LLM Training</div>
+      <div class="flex items-center gap-4">
+        <a href="#features" class="hover:text-slate-700">Features</a>
+        <a href="#architecture" class="hover:text-slate-700">Architecture</a>
+        <a href="#usecases" class="hover:text-slate-700">Use Cases</a>
+        <a href="#requestdemo" class="hover:text-slate-700">Technical Demo</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+</body>
+</html>
